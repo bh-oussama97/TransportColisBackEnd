@@ -1,6 +1,8 @@
 package tn.transport.colis.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,8 +10,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import tn.transport.colis.enumClass.Role;
 
@@ -32,6 +38,16 @@ public class User
 	private Role type;
 	@Temporal(TemporalType.DATE)
 	private Date dateCreation;
+	
+	public List<Colis> getListecolis() {
+		return listecolis;
+	}
+	public void setListecolis(List<Colis> listecolis) {
+		this.listecolis = listecolis;
+	}
+	@OneToMany(mappedBy = "fournisseur")
+	@JsonIgnore
+	private List<Colis> listecolis = new ArrayList<Colis>();
 	
 	
 	public int getId() {

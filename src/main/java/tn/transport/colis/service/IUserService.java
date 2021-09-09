@@ -6,4 +6,6 @@ public interface IUserService {
 
 	
 	public void add(User u);
+	
+	public User findByEmail(String email);
 }
