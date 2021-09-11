@@ -33,4 +33,51 @@ public class UserService implements IUserService{
 		return userRepo.findByEmail(email);
 	}
 
+
+	@Override
+	public User getUserById(int id) {
+		return userRepo.findById(id).get();
+	}
+
+
+	@Override
+	public void changerMotDePasse(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void update(User u) {
+		
+		User userbyid = userRepo.findById(u.getId()).get();
+		
+		String pwd = new BCryptPasswordEncoder().encode(u.getMotDePasse());
+			
+		u.setType(userbyid.getType());
+		u.setMotDePasse(pwd);
+		u.setDateCreation(new Date());
+		
+		userRepo.save(u);
+		
+	}
+
+
+	@Override
+	public void changePassWord(int id, String pwd) 
+	{
+		User u = userRepo.findById(id).get();
+
+		if (u != null) {
+
+			u.setMotDePasse(pwd);
+
+			this.update(u);
+		}
+		
+	}
+	
+	
+	
+
 }

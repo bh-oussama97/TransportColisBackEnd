@@ -24,8 +24,24 @@ public class Colis {
 	
 	private String image;
 	
-	private String adresseDomicile;
+	private String adresse;
 	
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public Date getDateFin() {
+		return dateFin;
+	}
+
+	public void setDateFin(Date dateFin) {
+		this.dateFin = dateFin;
+	}
+
 	private double prix ;
 	
 	
@@ -36,7 +52,7 @@ public class Colis {
 	private Date dateDebut;
 	
 	@Temporal(TemporalType.DATE)
-	private Date datefin;
+	private Date dateFin;
 	
 	@ManyToOne
 	private User fournisseur;
@@ -66,13 +82,7 @@ public class Colis {
 		this.image = image;
 	}
 
-	public String getAdresseDomicile() {
-		return adresseDomicile;
-	}
-
-	public void setAdresseDomicile(String adresseDomicile) {
-		this.adresseDomicile = adresseDomicile;
-	}
+	
 
 	public double getPrix() {
 		return prix;
@@ -98,13 +108,7 @@ public class Colis {
 		this.dateDebut = dateDebut;
 	}
 
-	public Date getDatefin() {
-		return datefin;
-	}
-
-	public void setDatefin(Date datefin) {
-		this.datefin = datefin;
-	}
+	
 
 	public User getFournisseur() {
 		return fournisseur;

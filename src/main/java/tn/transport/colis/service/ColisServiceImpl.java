@@ -2,13 +2,12 @@ package tn.transport.colis.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import net.bytebuddy.agent.ByteBuddyAgent.AttachmentProvider.ForUserDefinedToolsJar;
-import tn.esprit.spring.entity.Extra;
-import tn.esprit.spring.entity.KinderGarten;
+
 import tn.transport.colis.entity.Colis;
 import tn.transport.colis.entity.User;
 import tn.transport.colis.enumClass.Etat;
@@ -38,7 +37,8 @@ public class ColisServiceImpl implements IColisService
 	
 	
 	@Override
-	public void affecterFournisseurColis(int idcolis, int fournissId) {
+	public void affecterFournisseurColis(int idcolis, int fournissId) 
+	{
 		
 				Colis colis = colisRepo.findById(idcolis).get();
 				User forniss = useRepo.findById(fournissId).get();
@@ -50,13 +50,7 @@ public class ColisServiceImpl implements IColisService
 	}
 	
 	
-	@Override
-	public List<Colis> listecolis() 
-	{
-		
-		return (List<Colis>) colisRepo.findAll();
-		
-	}
+	
 	
 	
 	@Override
@@ -67,10 +61,35 @@ public class ColisServiceImpl implements IColisService
 	}
 
 
+	@Override
+	public List<Colis> listecolisParFournisseur (int idfournisseur) 
+	{
+		
+		List<Colis> listecolis = (List<Colis>) colisRepo.findAll();
+		
+		return listecolis.stream().filter(c -> c.getFournisseur().getId() == idfournisseur).collect(Collectors.toList());
+		
+	}
+
+
+	@Override
+	public List<Colis> listecolis() 
+	{
+		return (List<Colis>) colisRepo.findAll();
+	}
+
+
+	@Override
+	public void supprimerColis(int id) 
+	{
+		Colis c = colisRepo.findById(id).get();
+		
+		 colisRepo.delete(c);
+	}
 
 
 
-	
+
 
 	
 }

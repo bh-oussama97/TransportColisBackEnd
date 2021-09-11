@@ -18,6 +18,6 @@ public interface IColisRepository extends CrudRepository<Colis, Integer>
 
 	@Modifying
 	@Transactional
-	@Query("update Colis c set c.dateDebut = :dateStart ,c.datefin = :dateEnd  where c.id = :colisId")
+	@Query("update Colis c set c.dateDebut = :dateStart ,c.dateFin = :dateEnd  where c.id = :colisId")
 	public void updateColisJPQL(@Param("dateStart") Date dateStart,@Param("dateEnd") Date dateEnd,@Param("colisId") int meetingId);
 }
