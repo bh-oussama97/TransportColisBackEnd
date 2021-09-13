@@ -1,7 +1,10 @@
 package tn.transport.colis.service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import tn.transport.colis.entity.Colis;
 
@@ -21,5 +24,11 @@ public interface IColisService {
 	
 	
 	public void affecterFournisseurColis(int idcolis, int fournissId);
+	
+	public HashMap<String, String> affecterImage(int id, MultipartFile file);
+	
+	public int updateColis(Colis colis) ;
+	
+	
 	
 }

@@ -1,5 +1,6 @@
 package tn.transport.colis.entity;
 
+import java.io.File;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -26,6 +27,16 @@ public class Colis {
 	
 	private String adresse;
 	
+	
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public String getAdresse() {
 		return adresse;
 	}
@@ -74,14 +85,7 @@ public class Colis {
 		this.nom = nom;
 	}
 
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
+	
 	
 
 	public double getPrix() {
