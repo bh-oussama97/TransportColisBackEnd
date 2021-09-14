@@ -34,6 +34,16 @@ public class User
 	private String email;
 	private String  numeroTelephone;
 	private String motDePasse;
+	
+	private Boolean state;
+	
+	
+	public Boolean getState() {
+		return state;
+	}
+	public void setState(Boolean state) {
+		this.state = state;
+	}
 	@Enumerated(EnumType.STRING)
 	private Role type;
 	@Temporal(TemporalType.DATE)

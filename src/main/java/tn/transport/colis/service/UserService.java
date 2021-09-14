@@ -25,6 +25,24 @@ public class UserService implements IUserService{
 		userRepo.save(u);
 		
 	}
+	
+	@Override
+	public String updateStatUser(int iduser)
+	{
+		User u = userRepo.findById(iduser).get();
+		
+		if (u!= null)
+		{
+			u.setState(!u.getState());
+			userRepo.save(u);
+			return "stat user updated successfully " ;
+		}
+		
+		else
+			
+			return "error";
+		
+	}
 
 
 	@Override
