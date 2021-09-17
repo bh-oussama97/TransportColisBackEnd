@@ -23,13 +23,16 @@ public class ColisServiceImpl implements IColisService {
 
 	@Autowired
 	IUserRepository useRepo;
+	
 
+	
+	
 	@Override
 	public int ajouterColis(Colis c) {
-		c.setEtatColis(Etat.nonLivre);
-
+		c.setEtatColis(Etat.nonLivre);			
+		
 		colisRepo.save(c);
-
+		
 		return c.getId();
 	}
 

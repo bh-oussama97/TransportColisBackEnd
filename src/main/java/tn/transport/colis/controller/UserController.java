@@ -45,9 +45,11 @@ public class UserController {
 	
 	@PostMapping("/Register")
 	@ResponseBody
-	public void addUser(@RequestBody User u)
+	public User addUser(@RequestBody User u)
 	{
 		userservice.add(u);
+		
+		return u;
 	}
 	
 	
