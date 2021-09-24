@@ -22,7 +22,7 @@ public class SMSService {
 	
 	private final String ACCOUNT_SID ="AC74fb0337be462f1c981de78155d26686";
 
-    private final String AUTH_TOKEN = "6c30e79f0cc775850e594e4072f13c8d";
+    private final String AUTH_TOKEN = "2a15a1d8afb86e27dd1fc71925250036";
 
     private final String FROM_NUMBER = " +12017305168";
     

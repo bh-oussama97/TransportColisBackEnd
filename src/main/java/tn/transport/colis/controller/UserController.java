@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -54,6 +55,25 @@ public class UserController {
 	
 	
 	
+	@GetMapping("/getUserById/{iduser}")
+	@ResponseBody
+	
+	public User getUserByid(@PathVariable("iduser") int iduser)
+	{
+		
+		return userservice.getUserById(iduser);
+	}
+
+
+	
+	@GetMapping("/getMailUser/{prenom}")
+	public String getMail (@PathVariable("prenom") String prenom)
+	{
+		return userservice.findEmailByUsername(prenom);
+	}
+	
+	
+	
 	@PutMapping("/updateStateUser/{iduser}")
 	
 	
@@ -81,7 +101,10 @@ public class UserController {
 				User userauthenticated = userservice.findByEmail(user.getEmail());
 				
 				String username = userauthenticated.getNom()+" " +userauthenticated.getPrenom();
-				jsonObject.put("username", username);
+				
+				int id = userauthenticated.getId();
+				
+				jsonObject.put("username", user);
 				jsonObject.put("name", authentication.getName());
 				jsonObject.put("authorities", authentication.getAuthorities());
 				jsonObject.put("token",tokenProvider.createToken(email, userRepo.findByEmail(email).getType().toString()));

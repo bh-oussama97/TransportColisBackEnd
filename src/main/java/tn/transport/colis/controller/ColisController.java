@@ -53,6 +53,14 @@ public class ColisController {
 	    private final String  TOPIC_DESTINATION = "/lesson/sms";
 
 	 
+	    @GetMapping("/confirmColis/{idcolis}")
+	    
+	    public void confirmationColis(@PathVariable("idcolis") int idcolis)
+	    
+	    {
+	    	coliservice.confirmationColis(idcolis);
+	    }
+	    
 	 
 	   @PostMapping("/sendsms/{idcolis}")
 	   
@@ -128,7 +136,7 @@ public class ColisController {
 		
 	}
 	
-	@GetMapping("/listecolisParFournisseur/{idfornisseur}")
+	@GetMapping("/listecolisParFournisseur/{idfournisseur}")
 	@ResponseBody
 	
 	public List<Colis> listecolisParFournisseur(@PathVariable("idfournisseur") int id)

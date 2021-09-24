@@ -17,5 +17,7 @@ public interface IUserService {
 	
 	public void changePassWord(int id, String pwd);
 	
+	public String findEmailByUsername (String username);
+	
 	public String updateStatUser(int iduser);
 }

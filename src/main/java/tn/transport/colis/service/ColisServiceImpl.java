@@ -24,7 +24,8 @@ public class ColisServiceImpl implements IColisService {
 	@Autowired
 	IUserRepository useRepo;
 	
-
+	@Autowired
+	MailServiceImpl mailservice;
 	
 	
 	@Override
@@ -100,6 +101,35 @@ public class ColisServiceImpl implements IColisService {
 		Colis c = colisRepo.findById(id).get();
 
 		colisRepo.delete(c);
+	}
+
+	@Override
+	public void confirmationColis(int idcolis) {
+		
+    Colis c = colisRepo.findById(idcolis).orElse(null);
+    
+   
+    if (c != null  && c.getEtatColis().equals(Etat.nonLivre))
+    	
+    {
+    	 String emailfournisseur = c.getFournisseur().getEmail();
+    	mailservice.sendSimpleMail(emailfournisseur, "Succés", "Votre colis a été arrivé , Merci :)");
+    }
+		
+	}
+
+	@Override
+	public void mettreAjourEtatColis(int id) {
+		
+		Colis c = colisRepo.findById(id).orElse(null);
+		
+		if (c != null && c.getEtatColis().equals(Etat.nonLivre.toString()))
+		
+		{
+			c.setEtatColis(Etat.livre);
+			
+			colisRepo.save(c);
+		}
 	}
 
 }

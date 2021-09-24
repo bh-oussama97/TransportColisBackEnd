@@ -19,9 +19,9 @@ public interface IColisService {
 	
 	public List<Colis> listecolisParFournisseur( int idfournisseur);
 	
-	
+	public void mettreAjourEtatColis(int id);
+
 	public List<Colis> listecolis();
-	
 	
 	public void affecterFournisseurColis(int idcolis, int fournissId);
 	
@@ -29,6 +29,7 @@ public interface IColisService {
 	
 	public int updateColis(Colis colis) ;
 	
+	public void confirmationColis (int idcolis);
 	
-	
+
 }

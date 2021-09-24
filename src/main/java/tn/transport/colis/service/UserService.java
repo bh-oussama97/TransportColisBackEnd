@@ -63,7 +63,12 @@ public class UserService implements IUserService{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	
+	public String findEmailByUsername (String username)
+	{
+		return userRepo.findEmailUserByName(username);
+	}
 
 	@Override
 	public void update(User u) {
