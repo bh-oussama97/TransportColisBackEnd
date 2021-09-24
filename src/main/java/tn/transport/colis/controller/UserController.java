@@ -100,12 +100,19 @@ public class UserController {
 					
 				User userauthenticated = userservice.findByEmail(user.getEmail());
 				
-				String username = userauthenticated.getNom()+" " +userauthenticated.getPrenom();
+			//	String username = userauthenticated.getNom()+" " +userauthenticated.getPrenom();
+			//	jsonObject.put("username", user);
 				
-				int id = userauthenticated.getId();
+				jsonObject.put("id",userauthenticated.getId());
+				jsonObject.put("nom",userauthenticated.getNom());
+				jsonObject.put("prenom",userauthenticated.getPrenom());
+				jsonObject.put("adresse",userauthenticated.getAdresse());
+				jsonObject.put("email",userauthenticated.getEmail());
+				jsonObject.put("numeroTelephone",userauthenticated.getNumeroTelephone());
+				jsonObject.put("motDePasse",userauthenticated.getMotDePasse());
+				jsonObject.put("state",userauthenticated.getState());			
+				jsonObject.put("name", authentication.getName());	
 				
-				jsonObject.put("username", user);
-				jsonObject.put("name", authentication.getName());
 				jsonObject.put("authorities", authentication.getAuthorities());
 				jsonObject.put("token",tokenProvider.createToken(email, userRepo.findByEmail(email).getType().toString()));
 				return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.OK);
