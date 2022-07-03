@@ -92,12 +92,14 @@ public class ColisController {
 	       return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(LocalDateTime.now());
 	    }
 	
-	@PostMapping("/ajouterColis")
+	@PostMapping("/ajouterColis/{idFournisseur}")
 	@ResponseBody	
-	public int ajouterColis (@RequestBody Colis c)
+	public int ajouterColis (@RequestBody Colis c,@PathVariable("idFournisseur") int idFournisseur)
 	{
+		int id = coliservice.ajouterColis(c);
+		coliservice.affecterFournisseurColis(id,idFournisseur);
+		return id;
 		
-		return coliservice.ajouterColis(c);
 		
 	}
 	
